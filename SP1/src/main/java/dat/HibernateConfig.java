@@ -2,6 +2,7 @@ package dat;
 
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
+import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -20,7 +21,7 @@ public class HibernateConfig {
 
             Properties props = new Properties();
 
-            props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/exercise?currentSchema=public");
+            props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/sp1?currentSchema=public");
             props.put("hibernate.connection.username", "postgres");
             props.put("hibernate.connection.password", "postgres");
             props.put("hibernate.show_sql", "true"); // show sql in console
@@ -56,6 +57,11 @@ public class HibernateConfig {
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes
         // configuration.addAnnotatedClass(<YOUR ENTITY>.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Hobby.class);
+        configuration.addAnnotatedClass(ZipCode.class);
+        configuration.addAnnotatedClass(ContactInfo.class);
+        configuration.addAnnotatedClass(Adress.class);
     }
 
     public static EntityManagerFactory getEntityManagerFactoryConfig() {
