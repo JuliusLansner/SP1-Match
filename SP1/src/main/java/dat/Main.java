@@ -1,5 +1,6 @@
 package dat;
 
+import config.HibernateConfig;
 import jakarta.persistence.EntityManagerFactory;
 
 public class Main {

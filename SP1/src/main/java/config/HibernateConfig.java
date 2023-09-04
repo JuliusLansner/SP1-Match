@@ -1,4 +1,4 @@
-package dat;
+package config;
 
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
