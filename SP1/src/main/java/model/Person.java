@@ -16,6 +16,11 @@ import java.util.Set;
 @Entity
 public class Person {
 
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")

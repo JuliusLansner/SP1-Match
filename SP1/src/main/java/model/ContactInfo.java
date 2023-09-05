@@ -9,9 +9,9 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
+@ToString
 public class ContactInfo {
 
     @Id
@@ -27,4 +27,5 @@ public class ContactInfo {
 
     @OneToOne(mappedBy = "contactInfo")
     private Person person;
+
 }
