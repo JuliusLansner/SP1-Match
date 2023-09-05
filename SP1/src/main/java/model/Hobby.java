@@ -26,8 +26,9 @@ public class Hobby {
     @Column(name = "category")
     private String category;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
+    private HobbyType type;
 
     @ManyToMany(mappedBy = "hobbies")
     private Set<Person> persons = new HashSet<>();
