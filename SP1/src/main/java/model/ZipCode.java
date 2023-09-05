@@ -17,9 +17,8 @@ import java.util.Set;
 public class ZipCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "zip_id")
-    private int id;
+    @Column(name = "zip")
+    private int zip;
 
     @Column(name = "city_name")
     private String cityName;
