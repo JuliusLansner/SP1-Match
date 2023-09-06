@@ -14,6 +14,11 @@ import lombok.ToString;
 @Entity
 public class ContactInfo {
 
+    public ContactInfo(String email, int phoneNumber) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contactInfo_id")
@@ -23,7 +28,7 @@ public class ContactInfo {
     private String email;
 
     @Column(name = "phone_number", unique = true)
-    private int phoneNumber;
+    private long phoneNumber;
 
     @OneToOne(mappedBy = "contactInfo")
     private Person person;
@@ -34,5 +39,39 @@ public class ContactInfo {
                 "email='" + email + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 '}';
+    }
+
+    @PrePersist
+    private void checkNumber() {
+        long phoneNumber = this.getPhoneNumber();
+        String numberString = String.valueOf(phoneNumber);
+        String danishNumb = "45";
+
+        if (numberString.length() == 8) {
+
+            if (!numberString.startsWith(danishNumb)) {
+                numberString = danishNumb + numberString;
+                this.setPhoneNumber(Long.parseLong(numberString));
+            }
+        } else {
+            System.out.println("Not a valid number");
+        }
+    }
+
+    @PreUpdate
+    private void updateCheckNumber(){
+        long phoneNumber = this.getPhoneNumber();
+        String numberString = String.valueOf(phoneNumber);
+        String danishNumb = "45";
+
+        if (numberString.length() == 8) {
+
+            if (!numberString.startsWith(danishNumb)) {
+                numberString = danishNumb + numberString;
+                this.setPhoneNumber(Long.parseLong(numberString));
+            }
+        } else {
+            System.out.println("Not a valid number");
+        }
     }
 }
