@@ -16,11 +16,6 @@ import java.util.Set;
 @Entity
 public class Person {
 
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
@@ -38,9 +33,8 @@ public class Person {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private ContactInfo contactInfo;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Adress adress;
-
 
     @Override
     public String toString() {
@@ -48,7 +42,7 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", hobbies=" + hobbies +
+                ", contactInfo=" + contactInfo +
                 ", adress=" + adress +
                 '}';
     }
