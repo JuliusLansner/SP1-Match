@@ -60,6 +60,7 @@ private IPersonDAOImpl iPersonDAO = IPersonDAOImpl.getInstance();
        iPersonDAO.createPerson("TesterDude",25);
 
        try(EntityManager em = emf.createEntityManager()){
+
            List<Person> allPersons = em.createQuery("SELECT p FROM Person p").getResultList();
            Person person = new Person();
 
