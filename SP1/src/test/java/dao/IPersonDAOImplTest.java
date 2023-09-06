@@ -25,6 +25,8 @@ private IPersonDAOImpl iPersonDAO = IPersonDAOImpl.getInstance();
 
             em.createQuery("DELETE FROM Person").executeUpdate();
             em.createQuery("DELETE FROM ContactInfo").executeUpdate();
+            em.createQuery("DELETE FROM Adress").executeUpdate();
+            em.createQuery("DELETE FROM ZipCode").executeUpdate();
 
             em.createNativeQuery(
                     "INSERT INTO contactinfo (contactinfo_id, email, phone_number) VALUES " +

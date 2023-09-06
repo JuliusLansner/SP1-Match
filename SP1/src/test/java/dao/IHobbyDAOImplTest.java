@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import model.Hobby;
+import model.HobbyType;
 import model.Person;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -33,7 +34,7 @@ class IHobbyDAOImplTest {
         hobby.setName("pingvinBowling");
         hobby.setWikilink("www.pingvinBowling.com");
         hobby.setCategory("test");
-        hobby.setType("test");
+        hobby.setType(HobbyType.INDOOR);
 
         hobbyDAO.createHobby(hobby);
 
@@ -66,7 +67,7 @@ class IHobbyDAOImplTest {
         hobbyToDelete.setName("ToDeleteHobby");
         hobbyToDelete.setWikilink("www.to-delete-hobby.com");
         hobbyToDelete.setCategory("test");
-        hobbyToDelete.setType("test");
+        hobbyToDelete.setType(HobbyType.INACTIVE);
 
         hobbyDAO.createHobby(hobbyToDelete);
 

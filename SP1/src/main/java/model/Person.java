@@ -15,6 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 public class Person {
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +37,7 @@ public class Person {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private ContactInfo contactInfo;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Adress adress;
 
     @Override
