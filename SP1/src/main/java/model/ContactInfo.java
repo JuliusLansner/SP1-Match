@@ -19,10 +19,10 @@ public class ContactInfo {
     @Column(name = "contactInfo_id")
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", unique = true)
     private int phoneNumber;
 
     @OneToOne(mappedBy = "contactInfo")

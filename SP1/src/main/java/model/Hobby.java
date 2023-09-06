@@ -29,6 +29,21 @@ public class Hobby {
     @Column(name = "type")
     private String type;
 
-    @ManyToMany(mappedBy = "hobbies")
+    @ManyToMany(mappedBy = "hobbies", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Person> persons = new HashSet<>();
+
+    public void removePerson(Person person){
+        this.persons.remove(person);
+        person.getHobbies().remove(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Hobby{" +
+                "name='" + name + '\'' +
+                ", wikilink='" + wikilink + '\'' +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

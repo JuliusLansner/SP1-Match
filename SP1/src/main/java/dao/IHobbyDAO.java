@@ -8,15 +8,11 @@ import java.util.List;
 
 public interface IHobbyDAO {
     //US-3
-    List<Person> personsWithGivenHobby(String name);
+    List<Person> personsWithGivenHobby(String hobbyName);
+
     //US-4
-    int amountOfHobbyists(int id);
+    Long amountOfHobbyists(String hobbyName);
+
     //US-5
-    HashMap<Hobby,Integer> allHobbiesAndInterest();
-
-
-
-
-
-
+    HashMap<Hobby, Long> allHobbiesAndInterest();
 }

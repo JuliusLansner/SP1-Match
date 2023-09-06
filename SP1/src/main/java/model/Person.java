@@ -36,4 +36,14 @@ public class Person {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Adress adress;
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", contactInfo=" + contactInfo +
+                ", adress=" + adress +
+                '}';
+    }
 }
