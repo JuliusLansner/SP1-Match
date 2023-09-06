@@ -17,6 +17,10 @@ import java.util.Set;
 public class Hobby {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hobby_id")
+    private int id;
+
     @Column(name = "name", unique = true)
     private String name;
 

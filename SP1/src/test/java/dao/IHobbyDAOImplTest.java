@@ -3,13 +3,10 @@ package dao;
 import config.HibernateConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.NoResultException;
 import model.Hobby;
 import model.HobbyType;
 import model.Person;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +18,46 @@ class IHobbyDAOImplTest {
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
     private static IHobbyDAOImpl hobbyDAO = IHobbyDAOImpl.getInstance(emf);
 
+    private int firstTestHobbyId;
+
+    @BeforeEach
+    void setUp() {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+
+            em.createQuery("DELETE FROM Person").executeUpdate();
+            em.createQuery("DELETE FROM Hobby").executeUpdate();
+
+            Hobby testHobby1 = new Hobby();
+            testHobby1.setName("pingvinBowling");
+            testHobby1.setWikilink("www.iceColdBowlers.com");
+            testHobby1.setCategory("sport");
+            testHobby1.setType(HobbyType.SPORT);
+
+            Hobby testHobby2 = new Hobby();
+            testHobby2.setName("bearThrowing");
+            testHobby2.setWikilink("www.furryThrow.com");
+            testHobby2.setCategory("sport");
+            testHobby2.setType(HobbyType.SPORT);
+
+            em.persist(testHobby1);
+            em.persist(testHobby2);
+
+            firstTestHobbyId = testHobby1.getId();
+
+            Person person1 = new Person("Olfert", 30);
+            Person person2 = new Person("Sandra", 25);
+
+            person1.getHobbies().add(testHobby1);
+            person2.getHobbies().add(testHobby2);
+
+            em.persist(person1);
+            em.persist(person2);
+
+            em.getTransaction().commit();
+        }
+    }
+
     @AfterAll
     static void tearDown() {
         if (emf != null) {
@@ -31,32 +68,34 @@ class IHobbyDAOImplTest {
     @Test
     void createHobby() {
         Hobby hobby = new Hobby();
-        hobby.setName("pingvinBowling");
-        hobby.setWikilink("www.pingvinBowling.com");
+        hobby.setName("hesteVisker");
+        hobby.setWikilink("www.hviskeTiske.com");
         hobby.setCategory("test");
-        hobby.setType(HobbyType.INDOOR);
+        hobby.setType(HobbyType.OUTDOOR);
 
         hobbyDAO.createHobby(hobby);
 
-        Hobby savedHobby = hobbyDAO.findHobby("pingvinBowling");
+        Hobby savedHobby = hobbyDAO.findHobby(hobby.getId());
         assertNotNull(savedHobby);
-        assertEquals("pingvinBowling", savedHobby.getName());
+        assertEquals("hesteVisker", savedHobby.getName());
     }
 
     @Test
     void findHobby() {
-        Hobby hobby = hobbyDAO.findHobby("Painting");
+        Hobby hobby = hobbyDAO.findHobby(firstTestHobbyId);
         assertNotNull(hobby);
-        assertEquals("Painting", hobby.getName());
+        assertEquals("pingvinBowling", hobby.getName());
     }
 
     @Test
     void updateHobby() {
-        Hobby hobby = hobbyDAO.findHobby("pingvinBowling");
+        Hobby hobby = hobbyDAO.findHobby(firstTestHobbyId);
+        assertNotNull(hobby);
+
         hobby.setName("børneBowling");
         hobbyDAO.updateHobby(hobby);
 
-        Hobby updatedHobby = hobbyDAO.findHobby("børneBowling");
+        Hobby updatedHobby = hobbyDAO.findHobby(firstTestHobbyId);
         assertNotNull(updatedHobby);
         assertEquals("børneBowling", updatedHobby.getName());
     }
@@ -71,12 +110,12 @@ class IHobbyDAOImplTest {
 
         hobbyDAO.createHobby(hobbyToDelete);
 
-        Hobby savedHobby = hobbyDAO.findHobby("ToDeleteHobby");
+        Hobby savedHobby = hobbyDAO.findHobby(hobbyToDelete.getId());
         assertNotNull(savedHobby);
 
-        hobbyDAO.deleteHobby("ToDeleteHobby");
+        hobbyDAO.deleteHobby(hobbyToDelete.getId());
 
-        Hobby deletedHobby = hobbyDAO.findHobby("ToDeleteHobby");
+        Hobby deletedHobby = hobbyDAO.findHobby(hobbyToDelete.getId());
         assertNull(deletedHobby);
     }
 
@@ -88,14 +127,14 @@ class IHobbyDAOImplTest {
 
     @Test
     void personsWithGivenHobby() {
-        List<Person> personList = hobbyDAO.personsWithGivenHobby("Painting");
+        List<Person> personList = hobbyDAO.personsWithGivenHobby("pingvinBowling");
         assertNotNull(personList);
         assertEquals(1, personList.size());
     }
 
     @Test
     void amountOfHobbyists() {
-        long counter = hobbyDAO.amountOfHobbyists("Painting");
+        long counter = hobbyDAO.amountOfHobbyists("pingvinBowling");
         assertTrue(counter > 0);
         assertEquals(1, counter);
     }
