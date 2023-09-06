@@ -28,17 +28,19 @@ class IAdressDAOImplTest {
             em.createQuery("DELETE FROM ZipCode").executeUpdate();
 
             em.createNativeQuery(
-                    "INSERT INTO adress (adress_id,street_name,street_number) VALUES " +
-                            "(1,'lmeostreet',5), " +
-                            "(2,'maldevej',10), " +
-                            "(4,'fuck',20), " +
-                            "(3,'mikkelvej',15);").executeUpdate();
+                    "INSERT INTO zipcode (zip,city_name) VALUES " +
+                            "(1000,'hejvej'), " +
+                            "(3000,'jehvej'), " +
+                            "(2000,'jehvej'), " +
+                            "(4000,'hejjev');").executeUpdate();
+
             em.createNativeQuery(
-                    "INSERT INTO zipcode (adress_adress_id,zip,city_name) VALUES " +
-                            "(1,1000,'hejvej'), " +
-                            "(2,2000,'jehvej'), " +
-                            "(4,2000,'jehvej'), " +
-                            "(3,3000,'hejjev');").executeUpdate();
+                    "INSERT INTO adress (adress_id,street_name,street_number,zipcode_zip) VALUES " +
+                            "(1,'lmeostreet',5,1000), " +
+                            "(2,'maldevej',10,3000), " +
+                            "(4,'fuck',20,4000), " +
+                            "(3,'mikkelvej',15,2000);").executeUpdate();
+
 
             em.createNativeQuery(
                     "INSERT INTO contactinfo (contactinfo_id, email, phone_number) VALUES " +

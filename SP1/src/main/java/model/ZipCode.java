@@ -29,7 +29,7 @@ public class ZipCode {
     @Column(name = "municipality_name")
     private String municipality_name;
 
-    @OneToMany(mappedBy = "zipCode", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "zipcode", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Adress> adress = new HashSet<>();
 
     @Override

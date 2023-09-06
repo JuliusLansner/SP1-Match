@@ -28,10 +28,11 @@ public class Adress {
     @Column(name = "street_number")
     private int streetNumber;
 
-
-
     @ManyToOne
-    private ZipCode zipCode;
+    private ZipCode zipcode;
+
+    @OneToMany(mappedBy = "adress")
+    Set<Person> person = new HashSet<>();
 
     @Override
     public String toString() {
