@@ -28,11 +28,17 @@ public class Adress {
     @Column(name = "street_number")
     private int streetNumber;
 
-    @OneToOne
-    private Person person;
 
-    @OneToOne(mappedBy = "adress", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
+    @ManyToOne
     private ZipCode zipCode;
 
-
+    @Override
+    public String toString() {
+        return "Adress{" +
+                "id=" + id +
+                ", streetName='" + streetName + '\'' +
+                ", streetNumber=" + streetNumber +
+                '}';
+    }
 }

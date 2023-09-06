@@ -29,8 +29,17 @@ public class ZipCode {
     @Column(name = "municipality_name")
     private String municipality_name;
 
-    @OneToOne
-    private Adress adress;
+    @OneToMany(mappedBy = "zipCode", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Adress> adress = new HashSet<>();
 
+    @Override
+    public String toString() {
+        return "ZipCode{" +
+                "zip=" + zip +
+                ", cityName='" + cityName + '\'' +
+                ", regionName='" + regionName + '\'' +
+                ", municipality_name='" + municipality_name + '\'' +
+                '}';
+    }
 }
 

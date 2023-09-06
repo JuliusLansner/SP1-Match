@@ -27,4 +27,13 @@ public class ContactInfo {
 
     @OneToOne(mappedBy = "contactInfo")
     private Person person;
+
+    @Override
+    public String toString() {
+        return "ContactInfo{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                '}';
+    }
 }

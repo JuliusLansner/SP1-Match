@@ -1,12 +1,18 @@
 package dat;
 
 import config.HibernateConfig;
+import dao.IAdressDAO;
+import dao.IAdressDAOImpl;
+import dao.IZipDAOImpl;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import model.Person;
 
 public class Main {
+    EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
     public static void main(String[] args) {
 
-        EntityManagerFactory entityManagerFactory = HibernateConfig.getEntityManagerFactoryConfig();
+
 
 
         System.out.println("Hello world!");

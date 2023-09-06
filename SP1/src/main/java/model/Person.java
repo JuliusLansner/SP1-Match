@@ -33,7 +33,18 @@ public class Person {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private ContactInfo contactInfo;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Adress adress;
 
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", hobbies=" + hobbies +
+                ", adress=" + adress +
+                '}';
+    }
 }

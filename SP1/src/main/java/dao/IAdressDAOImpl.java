@@ -16,7 +16,7 @@ public class IAdressDAOImpl implements IAdressDAO {
     private static IAdressDAOImpl adressDAO;
 
 
-    private IAdressDAOImpl(EntityManagerFactory emf){
+    public IAdressDAOImpl(EntityManagerFactory emf){
         this.emf = emf;
     }
     public static IAdressDAOImpl getInstance(EntityManagerFactory emf){
@@ -26,10 +26,11 @@ public class IAdressDAOImpl implements IAdressDAO {
         return adressDAO;
 
     }
+    //US-6
     @Override
     public List<Person> cityPersonLivingList(String cityName) {
         try(EntityManager em = emf.createEntityManager()){
-            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.adress a WHERE a.zipCode.cityName = :cityName",Person.class);
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.adress.zipCode.cityName = :cityName",Person.class);
             query.setParameter("cityName",cityName);
             return query.getResultList();
         }
