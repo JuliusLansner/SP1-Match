@@ -36,15 +36,9 @@ public class IHobbyDAOImpl implements IHobbyDAO {
         }
     }
 
-    public Hobby findHobby(String hobbyName) {
+    public Hobby findHobby(int hobbyId) {
         try (EntityManager entityManager = emf.createEntityManager()) {
-            TypedQuery<Hobby> query = entityManager.createQuery("SELECT h from Hobby h where h.name = :hobbyName", Hobby.class);
-            query.setParameter("hobbyName", hobbyName);
-            try {
-                return query.getSingleResult();
-            } catch (NoResultException e) {
-                return null;
-            }
+            return entityManager.find(Hobby.class, hobbyId);
         }
     }
 
@@ -56,10 +50,10 @@ public class IHobbyDAOImpl implements IHobbyDAO {
         }
     }
 
-    public void deleteHobby(String hobbyName) {
+    public void deleteHobby(int hobbyId) {
         try (EntityManager entityManager = emf.createEntityManager()) {
             entityManager.getTransaction().begin();
-            Hobby hobby = entityManager.find(Hobby.class, hobbyName);
+            Hobby hobby = entityManager.find(Hobby.class, hobbyId);
             if (hobby != null) {
                 // Remove all the people associated with the hobby
                 for (Person person : hobby.getPersons()) {
