@@ -8,19 +8,19 @@ class ContactInfo
 class ZipCode
 enum HobbyType
 
-Person : int id
+
 Person : String name
 Person : int age
 
-Adress : int id
+
 Adress : String StreetName
 Adress : int StreetNumber
 
-ContactInfo : int id
+
 ContactInfo : String email
 ContactInfo : int phoneNumber
 
-ZipCode : int zip
+
 ZipCode : String cityName
 ZipCode : String regionName
 ZipCode : String municipalityName

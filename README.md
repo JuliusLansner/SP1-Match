@@ -1,11 +1,13 @@
 # SP1-Match
-# // desc of your business idea
+# 
+"The business idea is to create a platform that not only provides information about people and their hobbies but also offers a matchmaking service. Users can input their hobbies and interests, and the platform can connect them with like-minded individuals or groups in their local area. This would add a social networking element to the service and encourage people to explore new hobbies together, fostering real-world connections."
 
-
-# Domain model:
-# ![domain model](image.png)
+# Initial Domain model
+![init domain model](image-7.png)
+# Finished Domain model:
+![Domain model](image-4.png)
 # EER diagram: 
-# ![eer diagram](image-1.png)
+ ![EER Diagram](image-5.png)
 #
 # Group work:
 We've been in a group throughout the 3 semesters, and our general strategy is as follows:
@@ -35,11 +37,12 @@ Usually we'd make a KanBan board through GitHub Projects, but given the small am
 Branches were made as they were needed, making sure everything flows nicely.
 We always make a "testMain". It's the branch we merge everything together into, fix problems, THEN we push to main. This ensures whatever hits main is bugfree(ish).
 
- ![Alt text](image-3.png)
+ ![GitHub branches](image-3.png)
 
 
- 
- 
+ # Technical requirements:
+
+ ![Tech req](image-6.png)
 
 
 
