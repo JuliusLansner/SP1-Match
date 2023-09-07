@@ -57,6 +57,15 @@ private IPersonDAOImpl iPersonDAO = IPersonDAOImpl.getInstance(emf);
 
     @Test
     void createPerson() {
+
+        try(EntityManager em = emf.createEntityManager()){
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM Person").executeUpdate();
+            em.createQuery("DELETE FROM ContactInfo").executeUpdate();
+            em.createQuery("DELETE FROM Adress").executeUpdate();
+            em.createQuery("DELETE FROM ZipCode").executeUpdate();
+            em.getTransaction().commit();
+        }
        iPersonDAO.createPerson("TesterDude",25);
 
        try(EntityManager em = emf.createEntityManager()){
