@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Adress
+class Person
+class Hobby
+class ContactInfo
+class ZipCode
+enum HobbyType
+
+Person : int id
+Person : String name
+Person : int age
+
+Adress : int id
+Adress : String StreetName
+Adress : int StreetNumber
+
+ContactInfo : int id
+ContactInfo : String email
+ContactInfo : int phoneNumber
+
+ZipCode : int zip
+ZipCode : String cityName
+ZipCode : String regionName
+ZipCode : String municipalityName
+
+Hobby : String name
+Hobby : String wikilink
+Hobby : String category
+
+HobbyType : INDOOR
+HobbyType : OUTDOOR
+HobbyType : SPORT
+HobbyType : ACTIVE
+HobbyType : INACTIVE
+HobbyType : GAMES
+
+
+Person <--> ContactInfo
+Person <--> Hobby
+Person <--> Adress
+Adress <--> ZipCode
+HobbyType <--> Hobby
+
+
+
+@enduml

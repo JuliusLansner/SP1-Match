@@ -1,18 +1,23 @@
 package dat;
 
 import config.HibernateConfig;
-import dao.IAdressDAO;
-import dao.IAdressDAOImpl;
-import dao.IPersonDAOImpl;
-import dao.IZipDAOImpl;
+import dao.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import model.Person;
 
 public class Main {
-    static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
+    private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
     public static void main(String[] args) {
 
+        IPersonDAO personDAO = IPersonDAOImpl.getInstance(emf);
+        IAdressDAO adressDAO = IAdressDAOImpl.getInstance(emf);
+        personDAO.createPerson("betnia",27);
 
+        adressDAO.addAddressToPerson("leskor",21,"betnia","Herlev");
+
+
+
+        System.out.println("Hello world!");
     }
 }

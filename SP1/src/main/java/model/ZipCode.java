@@ -41,5 +41,6 @@ public class ZipCode {
                 ", municipality_name='" + municipality_name + '\'' +
                 '}';
     }
+
 }
 
