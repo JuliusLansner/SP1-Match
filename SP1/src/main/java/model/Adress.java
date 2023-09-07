@@ -42,4 +42,6 @@ public class Adress {
                 ", streetNumber=" + streetNumber +
                 '}';
     }
+
+
 }

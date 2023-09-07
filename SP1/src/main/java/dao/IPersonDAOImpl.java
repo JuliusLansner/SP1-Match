@@ -1,6 +1,7 @@
 package dao;
 
 import config.HibernateConfig;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import model.Person;
@@ -8,16 +9,17 @@ import model.Person;
 import java.util.List;
 
 public class IPersonDAOImpl implements IPersonDAO {
+    private static EntityManagerFactory emf;
     private static IPersonDAOImpl iPersonDAO;
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
-    private IPersonDAOImpl(){
 
+    private IPersonDAOImpl(EntityManagerFactory emf){
+        this.emf=emf;
     }
 
-    public static IPersonDAOImpl getInstance(){
+    public static IPersonDAOImpl getInstance(EntityManagerFactory emf){
         if(iPersonDAO == null){
-            iPersonDAO = new IPersonDAOImpl();
+            iPersonDAO = new IPersonDAOImpl(emf);
         }
         return iPersonDAO;
     }

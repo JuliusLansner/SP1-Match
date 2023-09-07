@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IPersonDAOImplTest {
 private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
-private IPersonDAOImpl iPersonDAO = IPersonDAOImpl.getInstance();
+private IPersonDAOImpl iPersonDAO = IPersonDAOImpl.getInstance(emf);
     @BeforeEach
     void setUp() {
         try (EntityManager em = emf.createEntityManager()) {
